@@ -37,7 +37,7 @@ export default function OrderHistoryPage() {
                 Order #{order.id}
               </div>
               <div className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                {order.paymentStatus} · {order.orderStatus} · {new Date(order.createdAt).toLocaleString()}
+                {order.paymentStatus} / {order.orderStatus} / {new Date(order.createdAt).toLocaleString()}
               </div>
             </div>
             <div className="text-xl font-black">{formatMoney(order.totalAmount)}</div>

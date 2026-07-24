@@ -36,7 +36,7 @@ export default function OrderDetailsPage() {
             <p className="mt-2 text-slate-500 dark:text-slate-400">{new Date(order.createdAt).toLocaleString()}</p>
           </div>
           <div className="rounded-lg bg-teal-50 px-4 py-3 text-sm font-black text-teal-700 dark:bg-teal-500/10 dark:text-teal-300">
-            {order.paymentStatus} · {order.orderStatus}
+            {order.paymentStatus} / {order.orderStatus}
           </div>
         </div>
 
@@ -46,7 +46,7 @@ export default function OrderDetailsPage() {
               <img className="aspect-square rounded-lg object-cover" src={item.product.images?.[0] || 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80'} alt={item.product.title} />
               <div>
                 <div className="font-black">{item.product.title}</div>
-                <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">Qty {item.quantity} · {formatMoney(item.price)}</div>
+                <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">Qty {item.quantity} / {formatMoney(item.price)}</div>
               </div>
               <div className="font-black">{formatMoney(item.lineTotal)}</div>
             </div>

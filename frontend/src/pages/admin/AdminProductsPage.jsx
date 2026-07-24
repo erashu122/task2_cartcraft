@@ -126,7 +126,7 @@ export default function AdminProductsPage() {
                 <div>
                   <div className="font-bold">{product.title}</div>
                   <div className="mt-1 text-sm text-slate-400">
-                    {product.category?.name} · {formatMoney(product.price)} · {product.stock} stock
+                    {product.category?.name} / {formatMoney(product.price)} / {product.stock} stock
                   </div>
                 </div>
                 <button className="btn-secondary px-3" onClick={() => onDelete(product.id)} aria-label="Delete product">
