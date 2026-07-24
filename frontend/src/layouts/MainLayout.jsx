@@ -1,18 +1,38 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { LogOut, Moon, ShoppingBag, Sun, UserRound } from 'lucide-react';
+import { Heart, LogOut, Moon, ShoppingBag, ShoppingCart, Sun, UserRound } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCredentials } from '../redux/slices/authSlice.js';
+import { loadCart, resetCart } from '../redux/slices/cartSlice.js';
 import { toggleDarkMode } from '../redux/slices/uiSlice.js';
+import { loadWishlist, resetWishlist } from '../redux/slices/wishlistSlice.js';
 import { useEffect } from 'react';
 
 export default function MainLayout() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const cartCount = useSelector((state) => state.cart.cart.totalItems);
   const darkMode = useSelector((state) => state.ui.darkMode);
+  const wishlistCount = useSelector((state) => state.wishlist.items.length);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(loadCart());
+      dispatch(loadWishlist());
+    } else {
+      dispatch(resetCart());
+      dispatch(resetWishlist());
+    }
+  }, [dispatch, user]);
+
+  const logout = () => {
+    dispatch(clearCredentials());
+    dispatch(resetCart());
+    dispatch(resetWishlist());
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950 transition dark:bg-slate-950 dark:text-slate-50">
@@ -37,10 +57,16 @@ export default function MainLayout() {
                 {user.role === 'ADMIN' && (
                   <NavLink className="btn-secondary" to="/admin">Admin</NavLink>
                 )}
+                <NavIconLink count={wishlistCount} label="Wishlist" to="/wishlist">
+                  <Heart size={18} />
+                </NavIconLink>
+                <NavIconLink count={cartCount} label="Cart" to="/cart">
+                  <ShoppingCart size={18} />
+                </NavIconLink>
                 <NavLink className="btn-secondary px-3" to="/profile" aria-label="Profile">
                   <UserRound size={18} />
                 </NavLink>
-                <button className="btn-secondary px-3" onClick={() => dispatch(clearCredentials())} aria-label="Logout">
+                <button className="btn-secondary px-3" onClick={logout} aria-label="Logout">
                   <LogOut size={18} />
                 </button>
               </>
@@ -57,5 +83,18 @@ export default function MainLayout() {
         <Outlet />
       </main>
     </div>
+  );
+}
+
+function NavIconLink({ children, count, label, to }) {
+  return (
+    <NavLink className="btn-secondary relative px-3" to={to} aria-label={label}>
+      {children}
+      {count > 0 && (
+        <span className="absolute -right-2 -top-2 grid h-5 min-w-5 place-items-center rounded-full bg-teal-600 px-1 text-[11px] font-black text-white">
+          {count}
+        </span>
+      )}
+    </NavLink>
   );
 }

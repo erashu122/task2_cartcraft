@@ -8,8 +8,10 @@ import RegisterPage from './pages/auth/RegisterPage.jsx';
 import ProfilePage from './pages/account/ProfilePage.jsx';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage.jsx';
 import AdminProductsPage from './pages/admin/AdminProductsPage.jsx';
+import CartPage from './pages/cart/CartPage.jsx';
 import ProductDetailsPage from './pages/catalog/ProductDetailsPage.jsx';
 import ProductListPage from './pages/catalog/ProductListPage.jsx';
+import WishlistPage from './pages/wishlist/WishlistPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
 export default function App() {
@@ -27,6 +29,22 @@ export default function App() {
             element={(
               <ProtectedRoute>
                 <ProfilePage />
+              </ProtectedRoute>
+            )}
+          />
+          <Route
+            path="/cart"
+            element={(
+              <ProtectedRoute>
+                <CartPage />
+              </ProtectedRoute>
+            )}
+          />
+          <Route
+            path="/wishlist"
+            element={(
+              <ProtectedRoute>
+                <WishlistPage />
               </ProtectedRoute>
             )}
           />

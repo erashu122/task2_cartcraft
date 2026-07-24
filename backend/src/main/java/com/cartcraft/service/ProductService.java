@@ -85,6 +85,11 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     }
 
+    @Transactional(readOnly = true)
+    public Product getProductEntity(Long id) {
+        return getProduct(id);
+    }
+
     private Specification<Product> buildSpecification(
             String query,
             Long categoryId,
