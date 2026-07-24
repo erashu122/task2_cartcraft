@@ -124,6 +124,8 @@ The backend runs on:
 http://localhost:8080
 ```
 
+Spring Boot loads `backend/.env` through `spring.config.import`. Make sure `DATABASE_USERNAME` and `DATABASE_PASSWORD` match your local PostgreSQL credentials. If PostgreSQL says `password authentication failed for user "postgres"`, update `backend/.env` with the real password or reset the local PostgreSQL password.
+
 ### Frontend
 
 ```bash
@@ -153,7 +155,7 @@ Backend:
 ```env
 DATABASE_URL=jdbc:postgresql://localhost:5432/cartcraft
 DATABASE_USERNAME=postgres
-DATABASE_PASSWORD=postgres
+DATABASE_PASSWORD=your-local-postgres-password
 JWT_SECRET=replace-with-a-strong-256-bit-secret
 JWT_EXPIRATION_MS=86400000
 CORS_ALLOWED_ORIGINS=http://localhost:5173
