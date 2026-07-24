@@ -7,6 +7,8 @@ import LoginPage from './pages/auth/LoginPage.jsx';
 import RegisterPage from './pages/auth/RegisterPage.jsx';
 import ProfilePage from './pages/account/ProfilePage.jsx';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage.jsx';
+import AdminCustomersPage from './pages/admin/AdminCustomersPage.jsx';
+import AdminInventoryPage from './pages/admin/AdminInventoryPage.jsx';
 import AdminOrdersPage from './pages/admin/AdminOrdersPage.jsx';
 import AdminProductsPage from './pages/admin/AdminProductsPage.jsx';
 import CartPage from './pages/cart/CartPage.jsx';
@@ -89,6 +91,8 @@ export default function App() {
           <Route index element={<AdminDashboardPage />} />
           <Route path="products" element={<AdminProductsPage />} />
           <Route path="orders" element={<AdminOrdersPage />} />
+          <Route path="customers" element={<AdminCustomersPage />} />
+          <Route path="inventory" element={<AdminInventoryPage />} />
         </Route>
 
         <Route path="/404" element={<NotFoundPage />} />

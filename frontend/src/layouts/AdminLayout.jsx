@@ -1,4 +1,4 @@
-import { BarChart3, Boxes, PackagePlus, ShoppingCart } from 'lucide-react';
+import { BarChart3, Boxes, PackagePlus, ShoppingCart, UsersRound } from 'lucide-react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 export default function AdminLayout() {
@@ -16,9 +16,12 @@ export default function AdminLayout() {
           <NavLink className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100" to="/admin/orders">
             <ShoppingCart size={18} /> Orders
           </NavLink>
-          <span className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100">
+          <NavLink className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100" to="/admin/customers">
+            <UsersRound size={18} /> Customers
+          </NavLink>
+          <NavLink className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100" to="/admin/inventory">
             <PackagePlus size={18} /> Inventory
-          </span>
+          </NavLink>
         </nav>
       </aside>
       <main className="lg:pl-64">
