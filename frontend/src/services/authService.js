@@ -15,4 +15,13 @@ export const authService = {
     const { data } = await api.get('/users/me');
     return data;
   },
+
+  async updateProfile(payload) {
+    const { data } = await api.put('/users/me', payload);
+    return data;
+  },
+
+  async changePassword(payload) {
+    await api.put('/users/password', payload);
+  },
 };

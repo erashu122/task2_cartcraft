@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyState from '../../components/common/EmptyState.jsx';
+import ReviewSection from '../../components/catalog/ReviewSection.jsx';
 import StarRating from '../../components/catalog/StarRating.jsx';
 import { useRequireAuthAction } from '../../hooks/useRequireAuthAction.js';
 import { addToCart } from '../../redux/slices/cartSlice.js';
@@ -23,6 +24,10 @@ export default function ProductDetailsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    loadProduct();
+  }, [id]);
+
+  const loadProduct = () => {
     catalogService.getProduct(id)
       .then((data) => {
         setProduct(data);
@@ -30,7 +35,7 @@ export default function ProductDetailsPage() {
       })
       .catch(() => toast.error('Product not found'))
       .finally(() => setLoading(false));
-  }, [id]);
+  };
 
   if (loading) {
     return <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8"><div className="h-96 animate-pulse rounded-xl bg-slate-200 dark:bg-slate-800" /></section>;
@@ -114,6 +119,7 @@ export default function ProductDetailsPage() {
           </div>
         </div>
       </div>
+      <ReviewSection productId={product.id} onReviewSaved={loadProduct} />
     </section>
   );
 }

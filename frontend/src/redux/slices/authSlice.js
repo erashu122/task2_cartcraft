@@ -32,6 +32,14 @@ export const loadCurrentUser = createAsyncThunk('auth/me', async (_, { rejectWit
   }
 });
 
+export const updateProfile = createAsyncThunk('auth/updateProfile', async (payload, { rejectWithValue }) => {
+  try {
+    return await authService.updateProfile(payload);
+  } catch (error) {
+    return rejectApiError(error, rejectWithValue);
+  }
+});
+
 const persistAuth = (state) => {
   storage.set('cartcraft_auth', { token: state.token, user: state.user });
 };
@@ -80,6 +88,17 @@ const authSlice = createSlice({
       .addCase(loadCurrentUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.user = action.payload;
+        persistAuth(state);
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.token = action.payload.token;
+        state.user = {
+          id: action.payload.id,
+          name: action.payload.name,
+          email: action.payload.email,
+          role: action.payload.role,
+        };
         persistAuth(state);
       })
       .addMatcher(
