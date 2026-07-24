@@ -32,6 +32,16 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.UNAUTHORIZED, "Invalid email or password", request, List.of());
     }
 
+    @ExceptionHandler(com.stripe.exception.SignatureVerificationException.class)
+    public ResponseEntity<ApiError> handleStripeSignature(Exception ex, HttpServletRequest request) {
+        return build(HttpStatus.BAD_REQUEST, "Invalid Stripe webhook signature", request, List.of());
+    }
+
+    @ExceptionHandler(com.stripe.exception.StripeException.class)
+    public ResponseEntity<ApiError> handleStripe(Exception ex, HttpServletRequest request) {
+        return build(HttpStatus.BAD_GATEWAY, "Payment provider error", request, List.of());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
         List<String> details = ex.getBindingResult().getFieldErrors().stream()

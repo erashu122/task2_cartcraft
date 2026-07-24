@@ -7,10 +7,14 @@ import LoginPage from './pages/auth/LoginPage.jsx';
 import RegisterPage from './pages/auth/RegisterPage.jsx';
 import ProfilePage from './pages/account/ProfilePage.jsx';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage.jsx';
+import AdminOrdersPage from './pages/admin/AdminOrdersPage.jsx';
 import AdminProductsPage from './pages/admin/AdminProductsPage.jsx';
 import CartPage from './pages/cart/CartPage.jsx';
 import ProductDetailsPage from './pages/catalog/ProductDetailsPage.jsx';
 import ProductListPage from './pages/catalog/ProductListPage.jsx';
+import OrderDetailsPage from './pages/orders/OrderDetailsPage.jsx';
+import OrderHistoryPage from './pages/orders/OrderHistoryPage.jsx';
+import OrderSuccessPage from './pages/orders/OrderSuccessPage.jsx';
 import WishlistPage from './pages/wishlist/WishlistPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
@@ -48,6 +52,30 @@ export default function App() {
               </ProtectedRoute>
             )}
           />
+          <Route
+            path="/orders"
+            element={(
+              <ProtectedRoute>
+                <OrderHistoryPage />
+              </ProtectedRoute>
+            )}
+          />
+          <Route
+            path="/orders/:id"
+            element={(
+              <ProtectedRoute>
+                <OrderDetailsPage />
+              </ProtectedRoute>
+            )}
+          />
+          <Route
+            path="/order-success"
+            element={(
+              <ProtectedRoute>
+                <OrderSuccessPage />
+              </ProtectedRoute>
+            )}
+          />
         </Route>
 
         <Route
@@ -60,6 +88,7 @@ export default function App() {
         >
           <Route index element={<AdminDashboardPage />} />
           <Route path="products" element={<AdminProductsPage />} />
+          <Route path="orders" element={<AdminOrdersPage />} />
         </Route>
 
         <Route path="/404" element={<NotFoundPage />} />

@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { Heart, LogOut, Moon, ShoppingBag, ShoppingCart, Sun, UserRound } from 'lucide-react';
+import { Heart, LogOut, Moon, PackageSearch, ShoppingBag, ShoppingCart, Sun, UserRound } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCredentials } from '../redux/slices/authSlice.js';
 import { loadCart, resetCart } from '../redux/slices/cartSlice.js';
@@ -63,6 +63,9 @@ export default function MainLayout() {
                 <NavIconLink count={cartCount} label="Cart" to="/cart">
                   <ShoppingCart size={18} />
                 </NavIconLink>
+                <NavLink className="btn-secondary px-3" to="/orders" aria-label="Orders">
+                  <PackageSearch size={18} />
+                </NavLink>
                 <NavLink className="btn-secondary px-3" to="/profile" aria-label="Profile">
                   <UserRound size={18} />
                 </NavLink>

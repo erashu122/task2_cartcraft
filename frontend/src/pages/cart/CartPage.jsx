@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import EmptyState from '../../components/common/EmptyState.jsx';
 import { clearCart, loadCart, removeCartItem, updateCartItem } from '../../redux/slices/cartSlice.js';
+import { paymentService } from '../../services/paymentService.js';
 import { formatMoney } from '../../utils/formatters.js';
 
 export default function CartPage() {
@@ -41,6 +42,15 @@ export default function CartPage() {
       toast.success('Cart cleared');
     } catch (error) {
       toast.error(error || 'Could not clear cart');
+    }
+  };
+
+  const checkout = async () => {
+    try {
+      const session = await paymentService.createSession();
+      window.location.assign(session.checkoutUrl);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || 'Could not start checkout');
     }
   };
 
@@ -112,7 +122,7 @@ export default function CartPage() {
           <div className="mt-5 border-t border-slate-200 pt-5 text-2xl font-black dark:border-slate-800">
             {formatMoney(cart.subtotal)}
           </div>
-          <button className="btn-primary mt-6 w-full">Continue to checkout</button>
+          <button className="btn-primary mt-6 w-full" onClick={checkout}>Continue to checkout</button>
         </aside>
       </div>
     </section>

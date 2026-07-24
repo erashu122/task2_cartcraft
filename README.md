@@ -7,7 +7,7 @@ CartCraft is a production-oriented full stack e-commerce application built with 
 - Module 1: Project foundation, backend authentication/RBAC, frontend auth shell - complete
 - Module 2: Catalog, categories, filters, product details - complete
 - Module 3: Cart, wishlist, persistent cart - complete
-- Module 4: Checkout, orders, Stripe webhook confirmation - pending
+- Module 4: Checkout, orders, Stripe webhook confirmation - complete
 - Module 5: Reviews, ratings, user profile - pending
 - Module 6: Admin dashboard, inventory, analytics - pending
 - Module 7: Polish, docs, deployment, screenshots - pending
