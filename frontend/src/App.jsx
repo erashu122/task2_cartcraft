@@ -7,6 +7,9 @@ import LoginPage from './pages/auth/LoginPage.jsx';
 import RegisterPage from './pages/auth/RegisterPage.jsx';
 import ProfilePage from './pages/account/ProfilePage.jsx';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage.jsx';
+import AdminProductsPage from './pages/admin/AdminProductsPage.jsx';
+import ProductDetailsPage from './pages/catalog/ProductDetailsPage.jsx';
+import ProductListPage from './pages/catalog/ProductListPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 
 export default function App() {
@@ -15,6 +18,8 @@ export default function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/products" element={<ProductListPage />} />
+          <Route path="/products/:id" element={<ProductDetailsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route
@@ -36,6 +41,7 @@ export default function App() {
           )}
         >
           <Route index element={<AdminDashboardPage />} />
+          <Route path="products" element={<AdminProductsPage />} />
         </Route>
 
         <Route path="/404" element={<NotFoundPage />} />

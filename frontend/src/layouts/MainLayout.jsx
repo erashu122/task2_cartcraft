@@ -26,6 +26,9 @@ export default function MainLayout() {
           </Link>
 
           <div className="flex items-center gap-2">
+            <NavLink className="hidden text-sm font-bold text-slate-600 hover:text-teal-700 dark:text-slate-300 dark:hover:text-teal-300 sm:inline-flex" to="/products">
+              Products
+            </NavLink>
             <button className="btn-secondary px-3" onClick={() => dispatch(toggleDarkMode())} aria-label="Toggle dark mode">
               {darkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>

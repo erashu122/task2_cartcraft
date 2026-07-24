@@ -10,9 +10,9 @@ export default function AdminLayout() {
           <NavLink className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100" to="/admin">
             <BarChart3 size={18} /> Dashboard
           </NavLink>
-          <span className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100">
+          <NavLink className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100" to="/admin/products">
             <Boxes size={18} /> Products
-          </span>
+          </NavLink>
           <span className="btn-secondary justify-start border-white/10 bg-white/5 text-slate-100">
             <ShoppingCart size={18} /> Orders
           </span>

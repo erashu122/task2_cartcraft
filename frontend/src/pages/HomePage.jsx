@@ -17,7 +17,7 @@ export default function HomePage() {
             A secure, fast, and refined storefront foundation with customer accounts, RBAC, and a Stripe-ready order pipeline.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link className="btn-primary" to="/register">
+            <Link className="btn-primary" to="/products">
               Start shopping <ArrowRight size={18} />
             </Link>
             <Link className="btn-secondary" to="/login">Sign in</Link>
